@@ -4,7 +4,9 @@ const responseUtil = new ResponseUtil();
 
 class appRouteController {
   static async getAppRoute(req, res) {
-    responseUtil.setSuccess(200, "Welcome to LILO");
+    res.status(200).send({
+      message: "Welcome to LILO Backend",
+    });
   }
 }
 
