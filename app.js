@@ -6,6 +6,8 @@ const connectDB = require("./server/connection/connection");
 const appRoute = require("./server/routes/appRoute");
 const PORT = process.env.PORT;
 
+require("dotenv/config");
+
 // Set up the express app
 const app = express();
 connectDB();
