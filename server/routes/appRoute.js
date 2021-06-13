@@ -3,6 +3,6 @@ const appRouteControllers = require("../controllers/appController");
 
 const router = express.Router();
 
-router.get("/", appRouteControllers.getAppRoute);
+router.post("/", appRouteControllers.getAppRoute);
 
 module.exports = router;

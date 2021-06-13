@@ -1,7 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
-const connectDB = require('./server/connection/connection');
+const connectDB = require("./server/connection/connection");
 
 const appRoute = require("./server/routes/appRoute");
 const PORT = process.env.PORT;
@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //   }
 //   next();
 // });
-
+app.use(express.json({ extended: false }));
 app.use("/api", appRoute);
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.
@@ -38,7 +38,7 @@ app.get("*", (req, res) =>
     message: "Welcome to LILO.",
   })
 );
-var listener = app.listen(8080, function(){
-  console.log('Listening on port ' + listener.address().port); //Listening on port 8888
+var listener = app.listen(8080, function () {
+  console.log("Listening on port " + listener.address().port); //Listening on port 8888
 });
 module.exports = app;
