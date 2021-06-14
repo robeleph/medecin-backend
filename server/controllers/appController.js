@@ -14,17 +14,19 @@ process.env.TOKEN_SECRET;
 class appRouteController {
   static async postAppRoute(req, res) {
     const { firstName, lastName } = req.body;
-    let user = {};
-    user.firstName = firstName;
-    user.lastName = lastName;
-    let userModel = new User(user);
-    await userModel.save();
+    console.log(req.body);
     const token = appRouteController.generateAccessToken({
       firstName: req.body.firstName,
     });
+    let user = {
+      firstName: firstName,
+      lastName: lastName,
+      token: token,
+    };
+    let userModel = new User(user);
+    await userModel.save();
     let response = {
       user: userModel,
-      token: token,
     };
     res.json(response);
   }
