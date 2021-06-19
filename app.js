@@ -3,7 +3,7 @@ const logger = require("morgan");
 const bodyParser = require("body-parser");
 const connectDB = require("./server/connection/connection");
 
-const appRoute = require("./server/routes/appRoute");
+const UserRoute = require("./server/routes/user.route");
 const PORT = process.env.PORT;
 
 require("dotenv/config");
@@ -32,8 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //   next();
 // });
 app.use(express.json({ extended: false }));
-app.use("/api", appRoute);
-// app.use("/user", userRoute);
+app.use("/user", UserRoute);
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.
 app.get("*", (req, res) =>

@@ -7,9 +7,27 @@ const UserSchema = new mongoose.Schema({
   lastName: {
     type: String,
   },
-  token: {
+  email: {
     type: String,
   },
+  password: {
+    type: String,
+  },
+  age: {
+    type: Number,
+  },
+  languageProficiency: {
+    type: String,
+  },
+  phoneNumber: {
+    type: String,
+  },
+  gender: {
+    type: String,
+  },
+  // token: {
+  //   type: String,
+  // },
 });
 
 const User = mongoose.model("User", UserSchema);

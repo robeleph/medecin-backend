@@ -6,7 +6,7 @@
                     "convention":"cammelCase",
                     "should include": ["return types", "ParameterName"]
                     },
-                "Global Constats" : "Allcaps with underscore",
+                "Global Constants" : "Allcaps with underscore",
                 "Global fields" : "lowerCamelCase",
                 "Parameter name": "lowerCamelCase",
                 "Local variables": "lowerCamelCase",
