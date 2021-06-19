@@ -1,5 +1,6 @@
 const User = require("../models/user.model");
 const TokenGenerator = require("../utils/generateToken.util");
+const PasswordEncrypt = require("../utils/bcrypt.util");
 class UserService {
   static async registerUser(req) {
     const {
@@ -19,13 +20,14 @@ class UserService {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      password: password,
+      password: await PasswordEncrypt.encryptPassword(password),
       age: age,
       languageProficiency: languageProficiency,
       phoneNumber: phoneNumber,
       gender: gender,
       token: token,
     };
+    console.log(user.password);
     let userModel = new User(user);
     await userModel.save();
     let response = {
