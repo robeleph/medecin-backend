@@ -33,6 +33,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // });
 app.use(express.json({ extended: false }));
 app.use("/api", appRoute);
+// app.use("/user", userRoute);
 
 // Setup a default catch-all route that sends back a welcome message in JSON format.
 app.get("*", (req, res) =>
@@ -40,7 +41,7 @@ app.get("*", (req, res) =>
     message: "Welcome to LILO.",
   })
 );
-var listener = app.listen(8080, function () {
+var listener = app.listen(4200, function () {
   console.log("Listening on port " + listener.address().port); //Listening on port 8888
 });
 module.exports = app;

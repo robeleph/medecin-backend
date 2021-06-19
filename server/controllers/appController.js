@@ -1,45 +1,29 @@
-const ResponseUtil = require("../utils/ResponseUtil");
-const mongoose = require("mongoose");
-const User = require("../models/user");
-const jwt = require("jsonwebtoken");
-const responseUtil = new ResponseUtil();
-const dotenv = require("dotenv");
+const appServices = require("../services/appServices");
+const ResponsesUtil = require("../utils/ResponseUtil");
 
-// get config vars
-dotenv.config();
-
-// access config var
-process.env.TOKEN_SECRET;
+const responsesUtil = new ResponsesUtil();
 
 class appRouteController {
   static async postAppRoute(req, res) {
-    const { firstName, lastName } = req.body;
-    console.log(req.body);
-    const token = appRouteController.generateAccessToken({
-      firstName: req.body.firstName,
-    });
-    let user = {
-      firstName: firstName,
-      lastName: lastName,
-      token: token,
-    };
-    let userModel = new User(user);
-    await userModel.save();
-    let response = {
-      user: userModel,
-    };
-    res.json(response);
-  }
-  static async getAppRoute(req, res) {
     try {
-      const allUsers = await User.find();
-      return res.json(allUsers);
-    } catch (err) {
-      return res.json({ message: err });
+      const userResponse = await appServices.getAllApplicationCategories(req);
+      if (userResponse) {
+        responsesUtil.setSuccess(
+          200,
+          "All application categories retrieved successfully!",
+          userResponse
+        );
+      } else {
+        responsesUtil.setSuccess(200, "No application categories found!");
+      }
+      return responsesUtil.send(res);
+    } catch (error) {
+      responsesUtil.setError(400, error);
+      return responsesUtil.send(res);
     }
   }
-  static generateAccessToken(username) {
-    return jwt.sign(username, process.env.TOKEN_SECRET, { expiresIn: "1800s" });
+  static async getAppRoute(req, res) {
+    return appServices.getAPProute();
   }
 }
 
