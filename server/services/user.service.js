@@ -1,6 +1,7 @@
 const User = require("../models/user.model");
 const TokenGenerator = require("../utils/generateToken.util");
 const PasswordEncrypt = require("../utils/bcrypt.util");
+const NodeMailer = require("../config/nodemailer.config");
 class UserService {
   static async registerUser(req) {
     const {
@@ -13,6 +14,7 @@ class UserService {
       phoneNumber,
       gender,
     } = req.body;
+
     const token = TokenGenerator.generateAccessToken({
       firstName: req.body.firstName,
     });
@@ -25,15 +27,13 @@ class UserService {
       languageProficiency: languageProficiency,
       phoneNumber: phoneNumber,
       gender: gender,
+      status: "PENDING",
       token: token,
     };
-    console.log(user.password);
     let userModel = new User(user);
-    await userModel.save();
-    let response = {
-      user: userModel,
-    };
-    return response;
+    userModel = await userModel.save();
+    NodeMailer.sendConfirmationEmail(userModel);
+    return userModel;
   }
 }
 

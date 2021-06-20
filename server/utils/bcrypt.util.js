@@ -6,5 +6,10 @@ class PasswordEncrypt {
     // return hashed password
     return await bcrypt.hash(password, salt);
   }
+  static async comparePassword(password1, password2) {
+    await bcrypt.compare(password1, password2).then(async (res) => {
+      return res;
+    });
+  }
 }
 module.exports = PasswordEncrypt;

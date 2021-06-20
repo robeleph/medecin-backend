@@ -12,7 +12,6 @@ class ResponseUtil {
     this.message = message;
     this.data = data;
     this.token = token;
-
     this.type = "Success";
   }
 

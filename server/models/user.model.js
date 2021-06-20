@@ -25,9 +25,12 @@ const UserSchema = new mongoose.Schema({
   gender: {
     type: String,
   },
-  // token: {
-  //   type: String,
-  // },
+  status: {
+    type: String,
+  },
+  token: {
+    type: String,
+  },
 });
 
 const User = mongoose.model("User", UserSchema);
