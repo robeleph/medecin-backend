@@ -10,8 +10,8 @@
                 "Global fields" : "lowerCamelCase",
                 "Parameter name": "lowerCamelCase",
                 "Local variables": "lowerCamelCase",
-                "Class name": "UpperCamleCase",
-                "Enums": "UpperCamleCase"
+                "Class name": "UpperCamelCase",
+                "Enums": "UpperCamelCase"
             }
         },
         "commits": "[< USE_CASE >: < [COMMITED_TASK, UPDATED_TASK]>] (separator between use cases should be ; if multiple usecases updated)",
