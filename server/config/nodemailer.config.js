@@ -22,12 +22,14 @@ class NodeMailer {
         to: userModel.email,
         subject: "Please confirm your account",
         html: `<h1>Email Confirmation</h1>
-            <h2>Hello ${userModel.firstName}</h2>
-            <p>Thank you for subscribing. Please confirm your email by clicking on the following link</p>
+            <h3>Hello ${userModel.firstName}</h3>
+            <p>Thank you for registering on LILO. Please confirm your email by clicking on the following link</p>
             <a href=http://localhost:4200/user/confirm/${userModel.token}> Click here</a>
             </div>`,
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        return err;
+      });
     return userModel;
   }
 }

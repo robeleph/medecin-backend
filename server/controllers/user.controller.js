@@ -31,20 +31,18 @@ class userRouteController {
         NodeMailer.sendConfirmationEmail(user);
         RESPONSE_UTIL.setSuccess(200, "Please Verify Account", user);
         return RESPONSE_UTIL.send(res);
-      } else if (user) {
+      } else if (user && user.status == "ACTIVE") {
         bcrypt.compare(req.body.password, user.password).then((res) => {
           if (res) {
-            // res = user;
-            res.status(200).send("Login Successful!");
-            // RESPONSE_UTIL.setSuccess(200, "Login Successful", user);
-            // return RESPONSE_UTIL.send(res);
+            RESPONSE_UTIL.setSuccess(200, "Login Successful", user);
+            return RESPONSE_UTIL.send(user);
           }
           RESPONSE_UTIL.setError(404, error);
           return RESPONSE_UTIL.send(res);
         });
       } else {
         RESPONSE_UTIL.setError(404, error);
-        // return RESPONSE_UTIL.send(res);
+        return RESPONSE_UTIL.send(res);
       }
     });
   }

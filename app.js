@@ -40,7 +40,7 @@ app.get("*", (req, res) =>
     message: "Welcome to LILO.",
   })
 );
-var listener = app.listen(4200, function () {
-  console.log("Listening on port " + listener.address().port); //Listening on port 8888
+var listener = app.listen(PORT, function () {
+  console.log("Listening on port " + listener.address().port); //Listening on port ...
 });
 module.exports = app;
