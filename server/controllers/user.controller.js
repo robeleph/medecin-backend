@@ -32,17 +32,23 @@ class userRouteController {
         RESPONSE_UTIL.setSuccess(200, "Please Verify Account", user);
         return RESPONSE_UTIL.send(res);
       } else if (user && user.status == "ACTIVE") {
-        bcrypt.compare(req.body.password, user.password).then((res) => {
-          if (res) {
-            RESPONSE_UTIL.setSuccess(200, "Login Successful", user);
-            return RESPONSE_UTIL.send(user);
-          }
+        try {
+          bcrypt.compare(req.body.password, user.password).then((cred) => {
+            if (cred) {
+              RESPONSE_UTIL.setSuccess(200, "Login Successful", user);
+              return RESPONSE_UTIL.send(res);
+            } else {
+              return res
+                .status(200)
+                .json({ error: "Invalid login credentials" });
+            }
+          });
+        } catch (error) {
           RESPONSE_UTIL.setError(404, error);
           return RESPONSE_UTIL.send(res);
-        });
+        }
       } else {
-        RESPONSE_UTIL.setError(404, error);
-        return RESPONSE_UTIL.send(res);
+        return res.status(200).json({ error: "Invalid login credentials" });
       }
     });
   }
@@ -61,6 +67,11 @@ class userRouteController {
         return RESPONSE_UTIL.send(res);
       })
       .catch((e) => console.log("error", e));
+  }
+  static async checkStatus(req, res, user) {
+    NodeMailer.sendConfirmationEmail(user);
+    RESPONSE_UTIL.setSuccess(200, "Please Verify Account", user);
+    return RESPONSE_UTIL.send(res);
   }
 }
 
