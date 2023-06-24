@@ -24,7 +24,7 @@ class NodeMailer {
         subject: "Please confirm your account",
         html: `<h1>Email Confirmation</h1>
             <h3>Hello ${userModel.firstName}</h3>
-            <p>Thank you for registering on LILO. Please confirm your email by clicking on the following link</p>
+            <p>Thank you for registering on Médecin. Please confirm your email by clicking on the following link</p>
             <a href=http://localhost:${PORT}/user/confirm/${userModel.token}> Click here</a>
             </div>`,
       })

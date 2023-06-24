@@ -7,8 +7,9 @@ dotenv.config();
 // access config var
 process.env.dbUser;
 process.env.dbPassword;
+
 const URI =
-  "mongodb+srv://" + process.env.dbUser + ":" + process.env.dbPassword + "@cluster0.sgnsk.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+"mongodb+srv://" + process.env.dbUser + ":" + process.env.dbPassword + "@cluster0.rrfw06f.mongodb.net/?retryWrites=true&w=majority";
 const connectDB = async () => {
   await mongoose.connect(URI, {
     useUnifiedTopology: true,

@@ -37,7 +37,7 @@ app.use("/user", UserRoute);
 // Setup a default catch-all route that sends back a welcome message in JSON format.
 app.get("*", (req, res) =>
   res.status(200).send({
-    message: "Welcome to LILO.",
+    message: "Welcome to Médecin.",
   })
 );
 var listener = app.listen(PORT, function () {
