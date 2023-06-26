@@ -2,7 +2,7 @@ const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const connectDB = require("./server/connection/connection");
-
+const cors = require('cors');
 const UserRoute = require("./server/routes/user.route");
 const PORT = process.env.PORT;
 
@@ -10,6 +10,9 @@ require("dotenv/config");
 
 // Set up the express app
 const app = express();
+
+app.use(cors());
+
 connectDB();
 // Log requests to the console.
 app.use(logger("dev"));
